@@ -1,6 +1,9 @@
 package com.vicsvetdev.springdiexample;
 
+import com.vicsvetdev.springdiexample.config.SpringDiExampleConfig;
+import com.vicsvetdev.springdiexample.config.SpringDiExampleConstructorConfig;
 import com.vicsvetdev.springdiexample.controllers.*;
+import com.vicsvetdev.springdiexample.datasource.FakeDataSource;
 import com.vicsvetdev.springdiexample.services.PrototypeBean;
 import com.vicsvetdev.springdiexample.services.SingletonBean;
 import org.springframework.boot.SpringApplication;
@@ -52,6 +55,24 @@ public class SpringDiExampleApplication {
         System.out.println(prototypeBean1.getMyScope());
         PrototypeBean prototypeBean2 = ctx.getBean(PrototypeBean.class);
         System.out.println(prototypeBean2.getMyScope());
+
+        System.out.println("----------------- Fake Data Source");
+        FakeDataSource fakeDataSource = ctx.getBean(FakeDataSource.class);
+        System.out.println(fakeDataSource.getUsername());
+        System.out.println(fakeDataSource.getPassword());
+        System.out.println(fakeDataSource.getJdbcurl());
+
+        System.out.println("---------------------- Config Props Bean");
+        SpringDiExampleConfig fakeConfigDataSource = ctx.getBean(SpringDiExampleConfig.class);
+        System.out.println(fakeConfigDataSource.getUsername());
+        System.out.println(fakeConfigDataSource.getPassword());
+        System.out.println(fakeConfigDataSource.getJdbcurl());
+
+        System.out.println("---------------------- Constructor Props Bean");
+        SpringDiExampleConstructorConfig springDiExampleConfig = ctx.getBean(SpringDiExampleConstructorConfig.class);
+        System.out.println(springDiExampleConfig.getUsername());
+        System.out.println(springDiExampleConfig.getPassword());
+        System.out.println(springDiExampleConfig.getJdbcurl());
     }
 
 }
